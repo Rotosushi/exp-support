@@ -65,11 +65,13 @@ Result memory_move(void *target, void const *source, u64 size);
 /**
  * @brief Compare lexicographically two blocks of memory.
  */
-i32 memory_compare(void const *a, void const *b, u64 size);
+Result memory_compare(
+    void const *a, u64 asize, void const *b, u64 bsize, u64 count, i32 *result);
 
 /**
  * @brief Find the first occurrence of a value in a block of memory.
  */
-void *memory_find(void const *restrict target, u64 size, char value);
+Result
+memory_find(void const *restrict target, u64 size, char value, void **result);
 
 #endif // !EXP_SUPPORT_ALGORITHM_MEMORY_H
