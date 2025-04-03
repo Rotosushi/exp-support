@@ -1,3 +1,11 @@
+# configuration directories
+.vscode/
+.cache/
+
+# Build directories
+[Bb]uild/
+[Oo]ut/
+
 # Prerequisites
 *.d
 
