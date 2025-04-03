@@ -1,2 +1,2 @@
-# exp-support
-A support library for the exp compiler and it's components
+# support
+A support library for my C projects. Functions and Types I keep wanting/needing.
