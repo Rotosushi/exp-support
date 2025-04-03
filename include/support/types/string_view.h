@@ -20,8 +20,8 @@
  * @brief a constant view into a block of memory.
  */
 
-#ifndef EXP_SUPPORT_TYPES_STRING_VIEW_H
-#define EXP_SUPPORT_TYPES_STRING_VIEW_H
+#ifndef SUPPORT_TYPES_STRING_VIEW_H
+#define SUPPORT_TYPES_STRING_VIEW_H
 
 #include "support/types/scalar.h"
 
@@ -34,4 +34,6 @@ inline StringView string_view(u64 length, char const *data) {
     return (StringView){length, data};
 }
 
-#endif // !EXP_SUPPORT_TYPES_STRING_VIEW_H
+#define SV(s) (string_view(sizeof(s) - 1, (s)))
+
+#endif // !SUPPORT_TYPES_STRING_VIEW_H

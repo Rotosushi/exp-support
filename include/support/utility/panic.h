@@ -16,21 +16,22 @@
 // along with exp-support.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * @file support/types/result.h
- * @brief a result type for functions that can fail.
+ * @file support/utility/panic.h
+ * @brief panic macros for debugging.
  */
 
-#ifndef SUPPORT_TYPES_RESULT_H
-#define SUPPORT_TYPES_RESULT_H
+#ifndef SUPPORT_UTILITY_PANIC_H
+#define SUPPORT_UTILITY_PANIC_H
 
-typedef enum Result {
-    RESULT_SUCCESS,
-    RESULT_FAILURE,
-    RESULT_NULL_TARGET,
-    RESULT_NULL_SOURCE,
-    RESULT_UNDERSIZED_TARGET,
-    RESULT_UNDERSIZED_SOURCE,
-    RESULT_TARGET_SOURCE_OVERLAP,
-} Result;
+#include "support/types/result.h"
+#include "support/types/string_view.h"
 
-#endif // !SUPPORT_TYPES_RESULT_H
+[[noreturn]] void panic(StringView message, char const *file, i32 line);
+[[noreturn]] void
+panic_result(Result result, StringView message, char const *file, i32 line);
+
+#define PANIC(message) panic(SV(message), __FILE__, __LINE__)
+#define PANIC_RESULT(result, message)                                          \
+    panic_result(result, SV(message), __FILE__, __LINE__)
+
+#endif // !SUPPORT_UTILITY_PANIC_H

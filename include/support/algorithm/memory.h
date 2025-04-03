@@ -20,10 +20,11 @@
  * @brief memory manipulation functions.
  */
 
-#ifndef EXP_SUPPORT_ALGORITHM_MEMORY_H
-#define EXP_SUPPORT_ALGORITHM_MEMORY_H
+#ifndef SUPPORT_ALGORITHM_MEMORY_H
+#define SUPPORT_ALGORITHM_MEMORY_H
 
 #include "support/types/result.h"
+#include "support/types/scalar.h"
 
 /**
  * @brief Check if two memory regions overlap.
@@ -74,4 +75,4 @@ Result memory_compare(
 Result
 memory_find(void const *restrict target, u64 size, char value, void **result);
 
-#endif // !EXP_SUPPORT_ALGORITHM_MEMORY_H
+#endif // !SUPPORT_ALGORITHM_MEMORY_H

@@ -14,23 +14,3 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with exp-support.  If not, see <https://www.gnu.org/licenses/>.
-
-/**
- * @file support/types/result.h
- * @brief a result type for functions that can fail.
- */
-
-#ifndef SUPPORT_TYPES_RESULT_H
-#define SUPPORT_TYPES_RESULT_H
-
-typedef enum Result {
-    RESULT_SUCCESS,
-    RESULT_FAILURE,
-    RESULT_NULL_TARGET,
-    RESULT_NULL_SOURCE,
-    RESULT_UNDERSIZED_TARGET,
-    RESULT_UNDERSIZED_SOURCE,
-    RESULT_TARGET_SOURCE_OVERLAP,
-} Result;
-
-#endif // !SUPPORT_TYPES_RESULT_H

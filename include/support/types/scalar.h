@@ -21,16 +21,16 @@
  * plus some common functions not in the standard library.
  */
 
-#ifndef EXP_SUPPORT_TYPES_SCALAR_H
-#define EXP_SUPPORT_TYPES_SCALAR_H
+#ifndef SUPPORT_TYPES_SCALAR_H
+#define SUPPORT_TYPES_SCALAR_H
 
 #include "support/system/host.h"
 
-#ifndef EXP_SUPPORT_SYSTEM_HOST_PROCESSOR_X86_64
+#ifndef SUPPORT_SYSTEM_HOST_PROCESSOR_X86_64
 #error "We currently only support x86_64 architectures."
 #endif
 
-#if defined(EXP_SUPPORT_SYSTEM_HOST_LINUX)
+#if defined(SUPPORT_SYSTEM_HOST_LINUX)
 /*
  * @[https://en.cppreference.com/w/c/language/arithmetic_types]
  *
@@ -46,7 +46,7 @@ typedef signed short i16;
 typedef signed int   i32;
 typedef signed long  i64;
 
-#elif defined(EXP_SUPPORT_SYSTEM_HOST_WINDOWS)
+#elif defined(SUPPORT_SYSTEM_HOST_WINDOWS)
 /*
  * @[https://en.cppreference.com/w/c/language/arithmetic_types]
  *
@@ -63,7 +63,7 @@ typedef signed int       i32;
 typedef signed long long i64;
 
 #else
-#error "Unsupported platform: " EXP_SUPPORT_SYSTEM_HOST_OS_NAME
+#error "Unsupported platform: " SUPPORT_SYSTEM_HOST_OS_NAME
 #endif
 
 /*
@@ -97,4 +97,4 @@ typedef double f64;
 #define i32_MIN 0x80000000
 #define i64_MIN 0x8000000000000000ll
 
-#endif // !EXP_SUPPORT_TYPES_SCALAR_H
+#endif // !SUPPORT_TYPES_SCALAR_H

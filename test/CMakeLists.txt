@@ -16,20 +16,20 @@
 # along with exp-support.  If not, see <https://www.gnu.org/licenses/>.
 cmake_minimum_required(VERSION 3.20)
 
-configure_file(
-    ${SUPPORT_INCLUDE_DIR}/support/system/host.h.in
-    ${SUPPORT_INCLUDE_DIR}/support/system/host.h
+set(TestSources 
+    ${SUPPORT_TEST_DIR}/algorithm/memory_tests.c
 )
 
-set(SUPPORT_SOURCES
-    ${SUPPORT_SOURCE_DIR}/support/algorithm/memory.c
+function(create_test test_path)
+    cmake_path(GET test_path STEM test_name)
+    add_executable(${test_name} ${test_path})
+    target_include_directories(${test_name} PRIVATE ${SUPPORT_INCLUDE_DIR})
+    target_link_libraries(${test_name} PRIVATE support)
+    target_compile_options(${test_name} PRIVATE ${SUPPORT_C_FLAGS})
+    target_link_options(${test_name} PRIVATE ${SUPPORT_LD_FLAGS})
+    add_test(NAME ${test_name} COMMAND ${test_name})
+endfunction()
 
-    ${SUPPORT_SOURCE_DIR}/support/types/string_view.c
-)
-
-add_library(support STATIC 
-    ${SUPPORT_SOURCES}
-)
-target_include_directories(support PUBLIC ${SUPPORT_INCLUDE_DIR})
-target_compile_options(support PUBLIC ${SUPPORT_C_FLAGS})
-target_link_options(support PUBLIC ${SUPPORT_LD_FLAGS})
+foreach(test ${TestSources})
+    create_test(${test})
+endforeach()

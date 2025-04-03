@@ -18,7 +18,6 @@
  */
 
 #include "support/algorithm/memory.h"
-#include "support/types/result.h"
 
 bool memory_overlap(void const *a, u64 asize, void const *b, u64 bsize) {
     if (a == 0 || b == 0) { return false; }

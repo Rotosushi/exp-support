@@ -15,22 +15,16 @@
 // You should have received a copy of the GNU General Public License
 // along with exp-support.  If not, see <https://www.gnu.org/licenses/>.
 
-/**
- * @file support/types/result.h
- * @brief a result type for functions that can fail.
- */
+#ifndef SUPPORT_UTILITY_MESSAGE_H
+#define SUPPORT_UTILITY_MESSAGE_H
 
-#ifndef SUPPORT_TYPES_RESULT_H
-#define SUPPORT_TYPES_RESULT_H
+#include "support/types/string_view.h"
 
-typedef enum Result {
-    RESULT_SUCCESS,
-    RESULT_FAILURE,
-    RESULT_NULL_TARGET,
-    RESULT_NULL_SOURCE,
-    RESULT_UNDERSIZED_TARGET,
-    RESULT_UNDERSIZED_SOURCE,
-    RESULT_TARGET_SOURCE_OVERLAP,
-} Result;
+typedef enum MessageType {
+    MESSAGE_TYPE_INFO,
+    MESSAGE_TYPE_WARNING,
+    MESSAGE_TYPE_ERROR,
+    MESSAGE_TYPE_FATAL,
+} MessageType;
 
-#endif // !SUPPORT_TYPES_RESULT_H
+#endif // !SUPPORT_UTILITY_MESSAGE_H
