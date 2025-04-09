@@ -23,15 +23,25 @@
 #ifndef SUPPORT_TYPES_STREAM_H
 #define SUPPORT_TYPES_STREAM_H
 
+#include "support/system/host.h"
 #include "support/types/result.h"
 #include "support/types/string_view.h"
 
-struct Stream_;
-typedef struct Stream_ *Stream;
+#if defined(SUPPORT_SYSTEM_HOST_OS_LINUX)
+typedef struct Stream {
+    i32 file_descriptor;
+} Stream;
+#elif defined(SUPPORT_SYSTEM_HOST_OS_WINDOWS)
+typedef struct Stream {
+    void *handle;
+} Stream;
+#else
+#error "Unsupported platform: " SUPPORT_SYSTEM_HOST_OS_NAME
+#endif
 
-extern Stream stdin_stream;
-extern Stream stdout_stream;
-extern Stream stderr_stream;
+extern Stream *stdin_stream;
+extern Stream *stdout_stream;
+extern Stream *stderr_stream;
 
 typedef enum StreamMode {
     STREAM_MODE_READ,
@@ -39,10 +49,14 @@ typedef enum StreamMode {
     STREAM_MODE_READ_WRITE,
 } StreamMode;
 
-Result stream_open(Stream *stream, StringView path, StreamMode mode);
-Result stream_close(Stream stream);
-Result stream_length(Stream stream, u64 *length);
-Result stream_write(Stream stream, StringView view);
-Result stream_read(Stream stream, void *buffer, u64 size, u64 *bytes_read);
+Result stream_open(Stream *restrict stream, StringView path, StreamMode mode);
+Result stream_close(Stream *restrict stream);
+Result stream_length(Stream *restrict stream, u64 *length);
+Result stream_write(Stream *restrict stream, StringView view);
+Result stream_read(Stream *restrict stream,
+                   u8 *restrict buffer,
+                   u64 buffer_size,
+                   u64 bytes_requested,
+                   u64 *restrict bytes_read);
 
 #endif // !SUPPORT_TYPES_STREAM_H

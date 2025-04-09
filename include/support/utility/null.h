@@ -16,24 +16,15 @@
 // along with exp-support.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * @file support/types/result.h
- * @brief a result type for functions that can fail.
+ * @file support/utility/null.h
+ * @brief null pointer.
  */
 
-#ifndef SUPPORT_TYPES_RESULT_H
-#define SUPPORT_TYPES_RESULT_H
+#ifndef SUPPORT_UTILITY_NULL_H
+#define SUPPORT_UTILITY_NULL_H
 
-typedef enum Result {
-    RESULT_SUCCESS,
-    RESULT_FAILURE,
-    RESULT_NULL_TARGET,
-    RESULT_NULL_SOURCE,
-    RESULT_UNDERSIZED_TARGET,
-    RESULT_UNDERSIZED_SOURCE,
-    RESULT_TARGET_SOURCE_OVERLAP,
-    RESULT_CSTRING_EXCEEDS_MAX_LENGTH,
-    RESULT_STRING_VIEW_NULL_DATA,
-    RESULT_INVALID_STREAM_MODE,
-} Result;
+#ifndef NULL
+#define NULL ((void *)0)
+#endif
 
-#endif // !SUPPORT_TYPES_RESULT_H
+#endif // !SUPPORT_UTILITY_NULL_H

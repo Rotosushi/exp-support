@@ -18,9 +18,10 @@
  */
 
 #include "support/algorithm/memory.h"
+#include "support/utility/null.h"
 
 bool memory_overlap(void const *a, u64 asize, void const *b, u64 bsize) {
-    if (a == 0 || b == 0) { return false; }
+    if (a == NULL || b == NULL) { return false; }
     if (asize == 0 || bsize == 0) { return false; }
 
     char const *a_ptr = (char const *)a;
@@ -30,7 +31,7 @@ bool memory_overlap(void const *a, u64 asize, void const *b, u64 bsize) {
 }
 
 Result memory_set(void *restrict target, u64 size, char value, u64 count) {
-    if (target == 0) { return RESULT_NULL_TARGET; }
+    if (target == NULL) { return RESULT_NULL_TARGET; }
     if (size < count) { return RESULT_UNDERSIZED_TARGET; }
     if (count == 0) { return RESULT_SUCCESS; }
 
@@ -43,8 +44,8 @@ Result memory_set(void *restrict target, u64 size, char value, u64 count) {
 
 Result
 memory_copy(void *restrict target, void const *restrict source, u64 size) {
-    if (target == 0) { return RESULT_NULL_TARGET; }
-    if (source == 0) { return RESULT_NULL_SOURCE; }
+    if (target == NULL) { return RESULT_NULL_TARGET; }
+    if (source == NULL) { return RESULT_NULL_SOURCE; }
     if (size == 0) { return RESULT_SUCCESS; }
     if (memory_overlap(target, size, source, size)) {
         return RESULT_TARGET_SOURCE_OVERLAP;
@@ -60,8 +61,8 @@ memory_copy(void *restrict target, void const *restrict source, u64 size) {
 
 Result
 memory_move(void *restrict target, void const *restrict source, u64 size) {
-    if (target == 0) { return RESULT_NULL_TARGET; }
-    if (source == 0) { return RESULT_NULL_SOURCE; }
+    if (target == NULL) { return RESULT_NULL_TARGET; }
+    if (source == NULL) { return RESULT_NULL_SOURCE; }
     if (size == 0) { return RESULT_SUCCESS; }
 
     char       *target_ptr = (char *)target;
@@ -86,8 +87,8 @@ Result memory_compare(const void *a,
                       u64         bsize,
                       u64         count,
                       i32        *result) {
-    if (a == 0) { return RESULT_NULL_SOURCE; }
-    if (b == 0) { return RESULT_NULL_SOURCE; }
+    if (a == NULL) { return RESULT_NULL_SOURCE; }
+    if (b == NULL) { return RESULT_NULL_SOURCE; }
     if (asize < count) { return RESULT_UNDERSIZED_SOURCE; }
     if (bsize < count) { return RESULT_UNDERSIZED_SOURCE; }
     if (count == 0) {
@@ -111,9 +112,9 @@ Result memory_compare(const void *a,
 
 Result
 memory_find(const void *restrict source, u64 size, char value, void **result) {
-    if (source == 0) { return RESULT_NULL_SOURCE; }
+    if (source == NULL) { return RESULT_NULL_SOURCE; }
     if (size == 0) { return RESULT_UNDERSIZED_SOURCE; }
-    if (result == 0) { return RESULT_NULL_TARGET; }
+    if (result == NULL) { return RESULT_NULL_TARGET; }
 
     char const *source_ptr = (char const *)source;
     for (u64 index = 0; index < size; ++index) {
@@ -123,6 +124,6 @@ memory_find(const void *restrict source, u64 size, char value, void **result) {
         }
     }
 
-    *result = 0;
+    *result = NULL;
     return RESULT_SUCCESS;
 }

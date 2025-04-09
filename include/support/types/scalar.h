@@ -30,7 +30,7 @@
 #error "We currently only support x86_64 architectures."
 #endif
 
-#if defined(SUPPORT_SYSTEM_HOST_LINUX)
+#if defined(SUPPORT_SYSTEM_HOST_OS_LINUX)
 /*
  * @[https://en.cppreference.com/w/c/language/arithmetic_types]
  *
@@ -46,7 +46,7 @@ typedef signed short i16;
 typedef signed int   i32;
 typedef signed long  i64;
 
-#elif defined(SUPPORT_SYSTEM_HOST_WINDOWS)
+#elif defined(SUPPORT_SYSTEM_HOST_OS_WINDOWS)
 /*
  * @[https://en.cppreference.com/w/c/language/arithmetic_types]
  *

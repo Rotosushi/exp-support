@@ -16,24 +16,16 @@
 // along with exp-support.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * @file support/types/result.h
- * @brief a result type for functions that can fail.
+ * @file support/algorithm/cstring.h
+ * @brief C-string utility functions.
  */
 
-#ifndef SUPPORT_TYPES_RESULT_H
-#define SUPPORT_TYPES_RESULT_H
+#ifndef SUPPORT_ALGORITHM_CSTRING_H
+#define SUPPORT_ALGORITHM_CSTRING_H
 
-typedef enum Result {
-    RESULT_SUCCESS,
-    RESULT_FAILURE,
-    RESULT_NULL_TARGET,
-    RESULT_NULL_SOURCE,
-    RESULT_UNDERSIZED_TARGET,
-    RESULT_UNDERSIZED_SOURCE,
-    RESULT_TARGET_SOURCE_OVERLAP,
-    RESULT_CSTRING_EXCEEDS_MAX_LENGTH,
-    RESULT_STRING_VIEW_NULL_DATA,
-    RESULT_INVALID_STREAM_MODE,
-} Result;
+#include "support/types/result.h"
+#include "support/types/scalar.h"
 
-#endif // !SUPPORT_TYPES_RESULT_H
+Result cstring_length(char const *restrict cstring, u64 *length);
+
+#endif // !SUPPORT_ALGORITHM_CSTRING_H

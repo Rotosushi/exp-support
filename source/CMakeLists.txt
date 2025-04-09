@@ -22,6 +22,7 @@ configure_file(
 )
 
 set(SUPPORT_SOURCES
+    ${SUPPORT_SOURCE_DIR}/support/algorithm/cstring.c
     ${SUPPORT_SOURCE_DIR}/support/algorithm/memory.c
 
     ${SUPPORT_SOURCE_DIR}/support/types/string_view.c
