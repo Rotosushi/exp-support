@@ -18,13 +18,25 @@
 #ifndef SUPPORT_UTILITY_MESSAGE_H
 #define SUPPORT_UTILITY_MESSAGE_H
 
+#include "support/types/stream.h"
 #include "support/types/string_view.h"
 
 typedef enum MessageType {
     MESSAGE_TYPE_INFO,
+    MESSAGE_TYPE_TRACE,
+    MESSAGE_TYPE_DEBUG,
     MESSAGE_TYPE_WARNING,
     MESSAGE_TYPE_ERROR,
     MESSAGE_TYPE_FATAL,
 } MessageType;
+
+typedef struct MessageInfo {
+    MessageType type;
+    i32         line;
+    StringView  file;
+    StringView  message;
+} MessageInfo;
+
+void message(MessageInfo const *restrict message_info, Stream *restrict stream);
 
 #endif // !SUPPORT_UTILITY_MESSAGE_H

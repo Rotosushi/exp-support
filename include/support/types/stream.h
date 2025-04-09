@@ -29,7 +29,17 @@
 struct Stream_;
 typedef struct Stream_ *Stream;
 
-Result stream_open(Stream *stream, StringView path, StringView mode);
+extern Stream stdin_stream;
+extern Stream stdout_stream;
+extern Stream stderr_stream;
+
+typedef enum StreamMode {
+    STREAM_MODE_READ,
+    STREAM_MODE_WRITE,
+    STREAM_MODE_READ_WRITE,
+} StreamMode;
+
+Result stream_open(Stream *stream, StringView path, StreamMode mode);
 Result stream_close(Stream stream);
 Result stream_length(Stream stream, u64 *length);
 Result stream_write(Stream stream, StringView view);
