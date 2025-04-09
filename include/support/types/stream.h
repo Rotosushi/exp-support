@@ -25,6 +25,7 @@
 
 #include "support/system/host.h"
 #include "support/types/result.h"
+#include "support/types/scalar.h"
 #include "support/types/string_view.h"
 
 #if defined(SUPPORT_SYSTEM_HOST_OS_LINUX)
@@ -52,11 +53,12 @@ typedef enum StreamMode {
 Result stream_open(Stream *restrict stream, StringView path, StreamMode mode);
 Result stream_close(Stream *restrict stream);
 Result stream_length(Stream *restrict stream, u64 *length);
-Result stream_write(Stream *restrict stream, StringView view);
+Result
+stream_write(Stream *restrict stream, StringView view, i64 *bytes_written);
 Result stream_read(Stream *restrict stream,
                    u8 *restrict buffer,
                    u64 buffer_size,
                    u64 bytes_requested,
-                   u64 *restrict bytes_read);
+                   i64 *restrict bytes_read);
 
 #endif // !SUPPORT_TYPES_STREAM_H
