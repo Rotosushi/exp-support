@@ -95,6 +95,6 @@ typedef double f64;
 #define i8_MIN  0x80
 #define i16_MIN 0x8000
 #define i32_MIN 0x80000000
-#define i64_MIN 0x8000000000000000ll
+#define i64_MIN (i64)(0x8000000000000000ll)
 
 #endif // !SUPPORT_TYPES_SCALAR_H

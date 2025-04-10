@@ -21,7 +21,6 @@
 #include "support/system/host.h"
 #include "support/types/result.h"
 #include "support/types/scalar.h"
-#include "support/utility/assert.h"
 
 static Result
 stream_open_imp(Stream *restrict stream, StringView path, StreamMode mode);
@@ -62,15 +61,14 @@ Result stream_read(Stream *restrict stream,
 }
 
 #if defined(SUPPORT_SYSTEM_HOST_OS_LINUX)
-#include <errno.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
 
-Stream stdin_stream_imp  = (Stream){STDIN_FILENO};
-Stream stdout_stream_imp = (Stream){STDOUT_FILENO};
-Stream stderr_stream_imp = (Stream){STDERR_FILENO};
+Stream stdin_stream_imp  = {STDIN_FILENO};
+Stream stdout_stream_imp = {STDOUT_FILENO};
+Stream stderr_stream_imp = {STDERR_FILENO};
 
 Stream *stdin_stream  = &stdin_stream_imp;
 Stream *stdout_stream = &stdout_stream_imp;
@@ -81,7 +79,7 @@ stream_open_imp(Stream *restrict stream, StringView path, StreamMode mode) {
     if (stream == NULL) { return RESULT_NULL_TARGET; }
     {
         bool   empty  = false;
-        Result result = string_view_empty(&path, &empty);
+        Result result = string_view_is_empty(&path, &empty);
         if (result != RESULT_SUCCESS) { return result; }
         if (empty) { return RESULT_FILE_NOT_FOUND; }
     }
@@ -128,7 +126,7 @@ stream_write_imp(Stream *restrict stream, StringView view, i64 *bytes_written) {
     if (stream == NULL) { return RESULT_NULL_TARGET; }
     {
         bool   empty  = false;
-        Result result = string_view_empty(&view, &empty);
+        Result result = string_view_is_empty(&view, &empty);
         if (result != RESULT_SUCCESS) { return result; }
         if (empty) { return RESULT_SUCCESS; }
     }

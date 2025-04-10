@@ -16,30 +16,24 @@
 // along with exp-support.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * @file support/types/result.h
- * @brief a result type for functions that can fail.
+ * @file support/utility/break.h
+ * @brief a macro for inserting a breakpoint.
  */
 
-#ifndef SUPPORT_TYPES_RESULT_H
-#define SUPPORT_TYPES_RESULT_H
+#ifndef SUPPORT_UTILITY_BREAK_H
+#define SUPPORT_UTILITY_BREAK_H
 
-typedef enum Result {
-    RESULT_SUCCESS,
-    RESULT_FAILURE,
-    RESULT_ERRNO,
-    RESULT_NULL_TARGET,
-    RESULT_NULL_SOURCE,
-    RESULT_UNDERSIZED_TARGET,
-    RESULT_UNDERSIZED_SOURCE,
-    RESULT_TARGET_SOURCE_OVERLAP,
-    RESULT_CSTRING_EXCEEDS_MAX_LENGTH,
-    RESULT_STRING_VIEW_NULL_DATA,
-    RESULT_INVALID_STREAM,
-    RESULT_INVALID_STREAM_MODE,
-    RESULT_FILE_NOT_FOUND,
-} Result;
+#include "support/system/host.h"
 
-struct StringView;
-void result_to_string_view(struct StringView *restrict view, Result result);
+#if defined(SUPPORT_SYSTEM_HOST_COMPILER_GCC) ||                               \
+    defined(SUPPORT_SYSTEM_HOST_COMPILER_CLANG)
+#define SUPPORT_BREAK() __builtin_trap()
+#elif defined(SUPPORT_SYSTEM_HOST_COMPILER_MSVC)
+#define SUPPORT_BREAK() __debugbreak()
+#else
+#include <stdlib.h>
+#define SUPPORT_BREAK() abort()
+#endif // !defined(SUPPORT_SYSTEM_HOST_COMPILER_GCC) ||
+       // defined(SUPPORT_SYSTEM_HOST_COMPILER_CLANG)
 
-#endif // !SUPPORT_TYPES_RESULT_H
+#endif // !SUPPORT_UTILITY_BREAK_H

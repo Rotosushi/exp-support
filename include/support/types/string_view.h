@@ -61,8 +61,8 @@ Result string_view_compare(StringView const *restrict a,
 /**
  * @brief Check if a StringView is empty.
  */
-Result string_view_empty(StringView const *restrict view,
-                         bool *restrict result);
+Result string_view_is_empty(StringView const *restrict view,
+                            bool *restrict result);
 
 /**
  * @def SV

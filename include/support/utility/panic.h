@@ -26,12 +26,12 @@
 #include "support/types/result.h"
 #include "support/types/string_view.h"
 
-[[noreturn]] void panic(StringView message, char const *file, i32 line);
+[[noreturn]] void panic(StringView message, StringView file, i32 line);
 [[noreturn]] void
-panic_result(Result result, StringView message, char const *file, i32 line);
+panic_result(Result result, StringView message, StringView file, i32 line);
 
-#define PANIC(message) panic(SV(message), __FILE__, __LINE__)
+#define PANIC(message) panic(SV(message), SV(__FILE__), __LINE__)
 #define PANIC_RESULT(result, message)                                          \
-    panic_result(result, SV(message), __FILE__, __LINE__)
+    panic_result(result, SV(message), SV(__FILE__), __LINE__)
 
 #endif // !SUPPORT_UTILITY_PANIC_H

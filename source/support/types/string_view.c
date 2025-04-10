@@ -70,8 +70,8 @@ Result string_view_compare(StringView const *restrict a,
     return RESULT_SUCCESS;
 }
 
-Result string_view_empty(StringView const *restrict view,
-                         bool *restrict result) {
+Result string_view_is_empty(StringView const *restrict view,
+                            bool *restrict result) {
     if (view == NULL) { return RESULT_NULL_SOURCE; }
     if (view->data == NULL) { return RESULT_STRING_VIEW_NULL_DATA; }
     if (result == NULL) { return RESULT_NULL_TARGET; }
