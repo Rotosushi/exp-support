@@ -17,6 +17,8 @@
 cmake_minimum_required(VERSION 3.20)
 
 set(TestSources 
+    ${SUPPORT_TEST_DIR}/algorithm/conversion_tests.c
+    ${SUPPORT_TEST_DIR}/algorithm/cstring_tests.c
     ${SUPPORT_TEST_DIR}/algorithm/memory_tests.c
 )
 

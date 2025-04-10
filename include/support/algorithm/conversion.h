@@ -23,8 +23,8 @@
 #ifndef SUPPORT_ALGORITHM_CONVERSION_H
 #define SUPPORT_ALGORITHM_CONVERSION_H
 
+#include "support/types/result.h"
 #include "support/types/scalar.h"
-#include "support/types/string_view.h"
 
 u64    convert_base_10_u64_buffer_length(u64 value);
 Result convert_base_10_u64(u64 value, char *restrict buffer, u64 buffer_length);
