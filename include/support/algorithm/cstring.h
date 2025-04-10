@@ -25,6 +25,9 @@
 
 #include "support/types/result.h"
 #include "support/types/scalar.h"
+#include "support/utility/numbers.h"
+
+#define CSTRING_MAX_LENGTH (8 * SUPPORT_MEBIBYTE)
 
 Result cstring_length(char const *restrict cstring, u64 *length);
 

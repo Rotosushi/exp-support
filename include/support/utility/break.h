@@ -29,6 +29,7 @@
     defined(SUPPORT_SYSTEM_HOST_COMPILER_CLANG)
 #define SUPPORT_BREAK() __builtin_trap()
 #elif defined(SUPPORT_SYSTEM_HOST_COMPILER_MSVC)
+#include <intrin.h>
 #define SUPPORT_BREAK() __debugbreak()
 #else
 #include <stdlib.h>

@@ -25,9 +25,6 @@
 #include "support/algorithm/cstring.h"
 #include "support/algorithm/memory.h"
 #include "support/utility/null.h"
-#include "support/utility/numbers.h"
-
-#define CSTRING_MAX_LENGTH (8 * SUPPORT_KIBIBYTE)
 
 Result cstring_length(const char *restrict cstring, u64 *length) {
     if (cstring == NULL) { return RESULT_NULL_SOURCE; }

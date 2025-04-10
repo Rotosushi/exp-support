@@ -24,7 +24,9 @@ configure_file(
 set(SUPPORT_SOURCES
     ${SUPPORT_SOURCE_DIR}/support/algorithm/conversion.c
     ${SUPPORT_SOURCE_DIR}/support/algorithm/cstring.c
+    ${SUPPORT_SOURCE_DIR}/support/algorithm/hash.c
     ${SUPPORT_SOURCE_DIR}/support/algorithm/memory.c
+    ${SUPPORT_SOURCE_DIR}/support/algorithm/random.c
 
     ${SUPPORT_SOURCE_DIR}/support/types/result.c
     ${SUPPORT_SOURCE_DIR}/support/types/stream.c
