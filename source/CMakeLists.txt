@@ -22,6 +22,7 @@ configure_file(
 )
 
 set(SUPPORT_SOURCES
+    ${SUPPORT_SOURCE_DIR}/support/algorithm/allocate.c
     ${SUPPORT_SOURCE_DIR}/support/algorithm/conversion.c
     ${SUPPORT_SOURCE_DIR}/support/algorithm/cstring.c
     ${SUPPORT_SOURCE_DIR}/support/algorithm/hash.c
@@ -42,3 +43,4 @@ add_library(support STATIC
 target_include_directories(support PUBLIC ${SUPPORT_INCLUDE_DIR})
 target_compile_options(support PUBLIC ${SUPPORT_C_FLAGS})
 target_link_options(support PUBLIC ${SUPPORT_LD_FLAGS})
+target_link_libraries(support PUBLIC ${SUPPORT_LIBRARIES})

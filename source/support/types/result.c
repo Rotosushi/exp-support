@@ -28,6 +28,8 @@ void result_to_string_view(StringView *restrict view, Result result) {
     case RESULT_SUCCESS:           *view = SV("success"); break;
     case RESULT_FAILURE:           *view = SV("failure"); break;
     case RESULT_ERRNO:             *view = SV("errno"); break;
+    case RESULT_INTEGER_OVERFLOW:  *view = SV("integer overflow"); break;
+    case RESULT_INVALID_ARGUMENT:  *view = SV("invalid argument"); break;
     case RESULT_NULL_TARGET:       *view = SV("null target"); break;
     case RESULT_NULL_SOURCE:       *view = SV("null source"); break;
     case RESULT_UNDERSIZED_TARGET: *view = SV("undersized target"); break;

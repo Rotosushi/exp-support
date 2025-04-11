@@ -16,19 +16,26 @@
 // along with support.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * @file support/algorithm/malloc.h
- * @brief malloc wrapper functions.
+ * @file support/algorithm/allocate.h
+ * @brief memory allocation helpers.
  */
 
-#ifndef SUPPORT_ALGORITHM_MALLOC_H
-#define SUPPORT_ALGORITHM_MALLOC_H
+#ifndef SUPPORT_ALGORITHM_ALLOCATE_H
+#define SUPPORT_ALGORITHM_ALLOCATE_H
 
 #include "support/types/result.h"
 #include "support/types/scalar.h"
 
-Result support_malloc(void **restrict ptr, u64 size);
-Result support_calloc(void **restrict ptr, u64 count, u64 size);
-Result support_realloc(void **restrict ptr, u64 size);
-Result support_free(void *restrict ptr);
+/**
+ * @brief Grows a dynamic array by a factor of 2.
+ *
+ * @param array     Pointer to the array to grow.
+ * @param capacity  Pointer to the current capacity of the array.
+ * @param element_size Size of each element in the array.
+ * @return RESULT_SUCCESS on success, or an error code on failure.
+ */
+Result grow_dynamic_array(void **restrict array,
+                          u64 *restrict capacity,
+                          u64 element_size);
 
-#endif // !SUPPORT_ALGORITHM_MALLOC_H
+#endif // !SUPPORT_ALGORITHM_ALLOCATE_H

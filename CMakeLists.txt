@@ -83,6 +83,8 @@ set(SUPPORT_LD_FLAGS)
 set(SUPPORT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 set(SUPPORT_SOURCE_DIR ${PROJECT_SOURCE_DIR}/source)
 set(SUPPORT_TEST_DIR ${PROJECT_SOURCE_DIR}/test)
+set(SUPPORT_EXTERNAL_DIR ${PROJECT_SOURCE_DIR}/external)
+set(SUPPORT_BUILD_DIR ${PROJECT_BINARY_DIR})
 
 message(STATUS "CMake build type: ${CMAKE_BUILD_TYPE}")
 
@@ -98,6 +100,10 @@ endif()
 
 message(STATUS "C Flags: ${SUPPORT_C_FLAGS}")
 message(STATUS "LD Flags: ${SUPPORT_LD_FLAGS}")
+
+add_subdirectory(${SUPPORT_EXTERNAL_DIR}/mimalloc)
+
+set(SUPPORT_LIBRARIES mimalloc)
 
 add_subdirectory(${SUPPORT_SOURCE_DIR})
 
